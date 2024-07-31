@@ -63,6 +63,7 @@ def validateFace():
     temp_image = f"./assets/images/.temp/{file.filename}"
     file.save(temp_image)
     df = DeepFace.verify(img1_path=temp_image, img2_path=f"./assets/images/stored-face/{file_name}", model_name="Facenet")
+    os.unlink(temp_image)
     if df['verified']:
         return jsonify({
             "status": True,
